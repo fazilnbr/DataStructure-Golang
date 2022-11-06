@@ -177,18 +177,26 @@ func (list *Singlelinkedlist) deleteDuplicate() {
 	if list.head == nil {
 		fmt.Println("There is no data to delete...........!")
 	} else {
-		temp := list.head
+		key := list.head
+		for key != nil {
+			prev := key
+			temp := key.next
 
-		for temp != nil {
-			temp2 := temp
-			for temp2 != nil {
-				if temp.data == temp2.next.data {
-					temp2.next = temp2.next.next
-					break
+			for temp != nil {
+				if temp.data == key.data {
+					prev.next = temp.next
+					temp.next.prev = prev
+					if temp == list.tail {
+						list.tail = prev
+					}
+
 				}
-				temp2 = temp2.next
+				prev = temp
+				temp = temp.next
+
 			}
-			temp = temp.next
+			key = key.next
+
 		}
 
 	}
