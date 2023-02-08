@@ -1,6 +1,8 @@
 package trees
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type node struct {
 	data        int
