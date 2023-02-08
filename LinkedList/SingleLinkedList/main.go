@@ -43,7 +43,7 @@ func (list *singlelinkedlist) Start() {
 	fmt.Print("\n\n                         SINGLE LINKED LIST\n                       ----------------------\n\n\n")
 loop:
 	for {
-		fmt.Print("Enter the options:-\n\n1-->Insert\n2-->Display\n3-->Delete Last\n4-->Delete Specific\n5-->Insertbeg\n6-->sort\n7-->Delete Duplicates\n0-->Exit\n\n")
+		fmt.Print("Enter the options:-\n\n1-->Insert\n2-->Display\n3-->Delete Last\n4-->Delete Specific\n5-->Insertbeg\n6-->sort\n7-->Delete Duplicates\n8-->bubble sort\n0-->Exit\n\n")
 		fmt.Print("\n\nEnter a option :-  ")
 		fmt.Scan(&n)
 		switch n {
@@ -61,12 +61,31 @@ loop:
 			list.sort()
 		case 7:
 			list.deleteDuplicate()
+		case 8:
+			list.bubblesort()
 		case 0:
 			break loop
 		default:
 			fmt.Println("\nChoose the correct option................!")
 
 		}
+	}
+}
+
+func (list *singlelinkedlist) bubblesort() {
+	temp := list.head
+	for temp != nil {
+		temp1 := list.head
+		for temp1.next != nil {
+			if temp1.data > temp1.next.data {
+				t := temp1.data
+				temp1.data = temp1.next.data
+				temp1.next.data = t
+			}
+			temp1 = temp1.next
+
+		}
+		temp = temp.next
 	}
 }
 

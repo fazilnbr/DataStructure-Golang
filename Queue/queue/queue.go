@@ -1,5 +1,5 @@
 // this program on linked list
-package main
+package queue
 
 import (
 	"fmt"
@@ -24,7 +24,7 @@ loop:
 		fmt.Scan(&n)
 		switch n {
 		case 1:
-			Queue.enqueue(0)
+			Queue.enqueue()
 		case 2:
 			Queue.display()
 		case 3:
@@ -38,14 +38,24 @@ loop:
 	}
 }
 
-func (Queue *Queue) enqueue(a int) {
+func (Queue *Queue) enqueue() {
 	var data int
-	if a == 0 {
-		fmt.Print("\n\n\nEnter the number:-  ")
-		fmt.Scan(&data)
+
+	fmt.Print("\n\n\nEnter the number:-  ")
+	fmt.Scan(&data)
+
+	newnode := new(node)
+	newnode.data = data
+	newnode.next = nil
+
+	if Queue.head == nil {
+		Queue.head = newnode
+		Queue.tail = newnode
 	} else {
-		data = a
+		Queue.tail.next = newnode
+		Queue.tail = newnode
 	}
+
 }
 
 func (Queue *Queue) display() {
@@ -65,14 +75,6 @@ func (Queue *Queue) dequeue() {
 	if Queue.head == nil {
 		fmt.Println("There is no data to delete...........!")
 	} else {
-		temp := Queue.head
-		for temp != nil {
-			if temp.next.next == nil {
-				temp.next = nil
-				Queue.tail = temp
-				break
-			}
-			temp = temp.next
-		}
+		Queue.head = Queue.head.next
 	}
 }
