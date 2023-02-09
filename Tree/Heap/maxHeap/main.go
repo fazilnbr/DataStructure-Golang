@@ -14,6 +14,10 @@ func main() {
 
 	// fmt.Println("len", len(maxHeap.heap))
 	fmt.Println(maxHeap.heap)
+	maxHeap.remove()
+	maxHeap.remove()
+	fmt.Println(maxHeap.heap)
+
 }
 
 func (h *maxHeap) maxHeap(array []int) {
